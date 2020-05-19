@@ -1,0 +1,408 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Standard Meta -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <!-- Site Properties -->
+  <title>Sola Relief</title>
+  <link rel="stylesheet" type="text/css" href="./semantic/components/reset.css">
+  <link rel="stylesheet" type="text/css" href="./semantic/components/site.css">
+
+  <link rel="stylesheet" type="text/css" href="./semantic/components/container.css">
+  <link rel="stylesheet" type="text/css" href="./semantic/components/grid.css">
+  <link rel="stylesheet" type="text/css" href="./semantic/components/header.css">
+  <link rel="stylesheet" type="text/css" href="./semantic/components/image.css">
+  <link rel="stylesheet" type="text/css" href="./semantic/components/menu.css">
+
+  <link rel="stylesheet" type="text/css" href="./semantic/components/divider.css">
+  <link rel="stylesheet" type="text/css" href="./semantic/components/dropdown.css">
+  <link rel="stylesheet" type="text/css" href="./semantic/components/segment.css">
+  <link rel="stylesheet" type="text/css" href="./semantic/components/button.css">
+  <link rel="stylesheet" type="text/css" href="./semantic/components/list.css">
+  <link rel="stylesheet" type="text/css" href="./semantic/components/icon.css">
+  <link rel="stylesheet" type="text/css" href="./semantic/components/sidebar.css">
+  <link rel="stylesheet" type="text/css" href="./semantic/components/transition.css">
+
+  <style type="text/css">
+
+    @font-face {
+      font-family: 'Lato';
+      src: url('./fonts/Lato-Regular.ttf');
+    }
+
+    .ui.menu {
+      border: 0 !important;
+    }
+
+    .hidden.menu {
+      display: none;
+    }
+
+    .masthead.segment {
+      min-height: 650px;
+      padding: 1em 0em;
+      /* webkit-transition: background 6s cubic-bezier(0.680, -0.550, 0.265, 1.4) 0s, opacity 6s cubic-bezier(0.680, -0.550, 0.265, 1.4) 0s;
+      transition: background 6s cubic-bezier(0.680, -0.550, 0.265, 1.4) 0s, opacity 6s cubic-bezier(0.680, -0.550, 0.265, 1.4) 0s; */
+    }
+    .masthead .logo.item img {
+      margin-right: 1em;
+    }
+    .masthead .ui.menu .ui.button {
+      margin-left: 0.5em;
+    }
+    .masthead h1.ui.header {
+      margin-top: 3em;
+      margin-bottom: 0em;
+      font-size: 6em;
+      font-weight: normal;
+    }
+
+    h1.ui.header {
+      font-size: 4em;
+      font-weight: normal;
+    }
+
+    .masthead h2.ui.header {
+      font-size: 2em;
+      font-weight: normal;
+    }
+
+    h2.ui.header {
+      font-size: 3em;
+      font-weight: normal;
+    }
+
+    h2.ui.header.bold {
+      font-weight: bold;
+      margin-
+    }
+
+    h4.ui.header {
+      font-size: 2em;
+      font-weight: normal;
+    }
+
+    h5.ui.header {
+      font-size: 1.5em;
+      font-weight: normal;
+    }
+
+    .masthead .ui.button {
+      margin-top: 1em;
+    }
+
+    .ui.vertical.stripe {
+      padding: 8em 0em;
+    }
+    .ui.vertical.stripe h3 {
+      font-size: 2em;
+    }
+    .ui.vertical.stripe .button + h3,
+    .ui.vertical.stripe p + h3 {
+      margin-top: 3em;
+    }
+    .ui.vertical.stripe .floated.image {
+      clear: both;
+    }
+    .ui.vertical.stripe p {
+      font-size: 1.33em;
+    }
+    .ui.vertical.stripe .horizontal.divider {
+      margin: 0em 0em;
+    }
+
+    .quote.stripe.segment {
+      padding: 0em;
+    }
+    .quote.stripe.segment .grid .column {
+      padding-top: 5em;
+      padding-bottom: 5em;
+    }
+
+    .footer.segment {
+      padding: 5em 0em;
+    }
+
+    .secondary.pointing.menu .toc.item {
+      display: none;
+    }
+
+    .ui.button {
+      font-weight: normal;
+    }
+
+    .row.spaced {
+      margin-bottom: 1em;
+    }
+
+    .underline {
+      text-decoration: underline;
+    }
+
+    @media only screen and (max-width: 700px) {
+      .ui.fixed.menu {
+        display: none !important;
+      }
+      .secondary.pointing.menu .item,
+      .secondary.pointing.menu .menu {
+        display: none;
+      }
+      .secondary.pointing.menu .toc.item {
+        display: block;
+      }
+      .masthead.segment {
+        min-height: 256px;
+      }
+      .masthead h1.ui.header {
+        font-size: 4em;
+        margin-top: 1.5em;
+      }
+      .masthead h2.ui.header {
+        margin-top: 0.5em;
+        font-size: 1.5em;
+      }
+      .masthead .ui.button {
+        margin-top: 0.5em;
+      }
+    }
+
+
+  </style>
+
+  <script src="./js/jquery-3.5.0.min.js"></script>
+  <script src="./semantic/components/visibility.js"></script>
+  <script src="./semantic/components/sidebar.js"></script>
+  <script src="./semantic/components/transition.js"></script>
+  <script>
+  $(document)
+    .ready(function() {
+
+      // fix menu when passed
+      $('.masthead')
+        .visibility({
+          once: false,
+          onBottomPassed: function() {
+            $('.fixed.menu').transition('fade in');
+          },
+          onBottomPassedReverse: function() {
+            $('.fixed.menu').transition('fade out');
+          }
+        })
+      ;
+
+      // create sidebar and attach to menu open
+      $('.ui.sidebar')
+        .sidebar('attach events', '.toc.item')
+      ;
+
+    })
+  ;
+  </script>
+</head>
+<body>
+
+<!-- Following Menu -->
+<div class="ui large top fixed hidden menu">
+  <div class="ui container">
+    <a class="active item">Home</a>
+    <a class="item">About</a>
+    <a class="item">Pricing</a>
+    <a class="item">News</a>
+    <div class="right menu">
+      <div class="item">
+        <a class="ui button">Log in</a>
+      </div>
+      <div class="item">
+        <a class="ui primary button">Sign Up</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Sidebar Menu -->
+<div class="ui vertical inverted sidebar menu">
+  <a class="active item">Home</a>
+  <a class="item">About</a>
+  <a class="item">Pricing</a>
+  <a class="item">News</a>
+  <a class="item">Login</a>
+  <a class="item">Signup</a>
+</div>
+
+
+<!-- Page Contents -->
+<div class="pusher">
+  <div class="ui inverted vertical masthead center aligned segment" style="background-image: url('./images/bg.jpg')">
+
+    <div class="ui container">
+      <div class="ui large secondary inverted pointing menu">
+        <a class="toc item">
+          <i class="sidebar icon"></i>
+        </a>
+        <a class="active item">Home</a>
+        <a class="item">About</a>
+        <a class="item">Pricing</a>
+        <a class="item">News</a>
+        <div class="right item">
+          <a class="ui inverted button">Log in</a>
+          <a class="ui inverted button">Sign Up</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui container">
+      <div class="ui middle aligned stackable grid container">
+        <div class="row" style="margin-top: 6em;">
+          <div class="ten wide column">
+            <h1 class="ui inverted header" style="margin-top: 0;">
+              Sola
+            </h1>
+            <h2 class="ui inverted header">Quick financial help after disasters.</h2>
+            <div class="ui huge primary button">Get a quote<i class="right arrow icon"></i></div>
+          </div>
+          <div class="six wide column">
+            <img class="ui fluid image" src="./images/test.png">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui vertical stripe segment">
+    <div class="ui equal width stackable grid container">
+      <!-- <div class="center aligned row spaced">
+        <div class="column">
+          <h1 class="ui header">How it works</h1>
+        </div>
+      </div> -->
+      <div class="center aligned row spaced">
+        <div class="column">
+          <h2 class="ui header bold">40</h2>
+          <h4 class="ui header">tornadoes per year with wind speeds over 140 mph</h4>
+          <!-- <img class="ui fluid image" src="./images/test.png"> -->
+        </div>
+        <div class="column">
+          <h2 class="ui header bold">Thousands</h2>
+          <h4 class="ui header">of dollars in damage after a tornado</h4>
+          <!-- <img class="ui fluid image" src="./images/test.png"> -->
+        </div>
+        <div class="column">
+          <h2 class="ui header bold">Weeks</h2>
+          <h4 class="ui header">before most insurance companies get back to you with a payout</h4>
+          <!-- <img class="ui fluid image" src="./images/test.png"> -->
+        </div>
+      </div>
+      <div class="center aligned row spaced">
+        <div class="column">
+          <h5 class="ui header">After a tornado, you will often need money days after the disaster hits. Sola is a great addition to any homeowners insurance.</h5>
+        </div>
+      </div>
+      <div class="center aligned row">
+        <div class="column">
+          <a class="ui huge button">Get Covered</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui vertical stripe segment">
+    <div class="ui middle aligned stackable grid container">
+      <div class="row spaced">
+        <div class="six wide center aligned column">
+          <h1 class="ui header">How it works</h1>
+        </div>
+        <div class="eight wide right floated column">
+          <!-- <h1>How it works</h1> -->
+          <div class="ui middle aligned animated list">
+            <h4 class="ui header item underline">1) Sign up for Sola</h4>
+            <p>Based on your home's risk, your policy can cost less than two cups of coffee per week.</p>
+            <h4 class="ui header item underline">2) We detect a tornado</h4>
+            <p>We utilize data from the National Oceanic Atmospheric Administration to identify if a tornado passed by you.</p>
+            <h4 class="ui header item underline">3) Get the money you need</h4>
+            <p>Recieve up to $10,000 within 2 days based on your distance from the storm and its strength.</p>
+          </div>
+          <!-- <img class="ui fluid image" src="./images/test.png"> -->
+        </div>
+      </div>
+      <div class="row">
+        <div class="center aligned column">
+          <a class="ui huge button">See Our Pricing</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="ui vertical stripe segment">
+    <div class="ui middle aligned stackable grid container">
+      <div class="row">
+        <div class="eight wide column">
+          <h3 class="ui header">We Help People Get Back On Their Feet</h3>
+          <p>Some more info :)</p>
+          <h3 class="ui header">We Make Post-Tornado Payments Fast!</h3>
+          <p>. . .</p>
+        </div>
+        <div class="six wide right floated column">
+          <h1>How it works</h1>
+          <img class="ui fluid image" src="./images/test.png">
+        </div>
+      </div>
+      <div class="row">
+        <div class="center aligned column">
+          <a class="ui huge button">See Our Pricing</a>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="ui vertical stripe segment">
+    <div class="ui text container">
+      <h4 class="ui horizontal header divider">
+        <a href="#">News</a>
+      </h4>
+      <h3 class="ui header">News Story #1</h3>
+      <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+      <a class="ui large button">Read More</a>
+      <h3 class="ui header">News Story #2</h3>
+      <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+      <a class="ui large button">I'm Still Quite Interested</a>
+    </div>
+  </div>
+
+
+  <div class="ui inverted vertical footer segment">
+    <div class="ui container">
+      <div class="ui stackable inverted divided equal height stackable grid">
+        <div class="three wide column">
+          <h4 class="ui inverted header">About</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item">Sitemap</a>
+            <a href="#" class="item">Contact Us</a>
+            <!-- <a href="#" class="item">Religious Ceremonies</a>
+            <a href="#" class="item">Gazebo Plans</a> -->
+          </div>
+        </div>
+        <div class="three wide column">
+          <h4 class="ui inverted header">Services</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item">Newsletter Signup</a>
+            <a href="#" class="item">FAQ</a>
+            <!-- <a href="#" class="item">How To Access</a>
+            <a href="#" class="item">Favorite X-Men</a> -->
+          </div>
+        </div>
+        <div class="seven wide column">
+          <h4 class="ui inverted header">Copyright Notice</h4>
+          <p>The copyright notice lmao</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>
